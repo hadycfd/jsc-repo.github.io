@@ -1,0 +1,65 @@
+    <style type="text/css">
+      #map { 
+      	height: 500px; 
+      }
+    </style>
+    <script type="text/javascript">	
+        var map;
+    var penanda = [];
+    var posisi = {lat:0.512574, lng:  101.448355};
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: posisi,
+        zoom: 13,
+      });
+      function tambah() {
+      var sw = map.getBounds().getSouthWest();
+      var ne = map.getBounds().getNorthEast();
+      for (var i = 0; i < 5; i++) {
+        setTimeout(function() {
+          var lat = Math.random() * (ne.lat() - sw.lat()) + sw.lat();
+          var lng = Math.random() * (ne.lng() - sw.lng()) + sw.lng();
+          penanda.push(new google.maps.Marker({
+            position: new google.maps.LatLng(lat, lng),
+            map: map,
+            animation: google.maps.Animation.DROP
+          }));
+        }, i * 200);
+      }
+    }
+    document.getElementById("tambah").onclick = tambah;
+    document.getElementById("animasi").onclick = function() {
+      for (var i = 0; i < penanda.length; i++) {
+        penanda[i].setAnimation(google.maps.Animation.BOUNCE);
+      }
+    };
+    document.getElementById("berhenti").onclick = function() {
+      for (var i = 0; i < penanda.length; i++) {
+        penanda[i].setAnimation(null);
+      }
+    };
+    google.maps.event.addListenerOnce(map, 'tilesloaded', tambah);
+  }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKN8E3VeLkA5mgeENXiKp9tjhPlQ95TPc&callback=initMap">
+    </script>
+    <div class="container">
+      <div class="section">
+        <div class="row">
+          <div class="col s12 m12">
+            <h5 class="card-panel red-text text-darken-2"><center>Cara Membuat Animasi Pada Marker Google Maps</center></h5>
+            <a  class="waves-effect waves-light btn mouse" onclick="pageRedirect()"><i class="material-icons left">keyboard_arrow_left</i>Kembali</a>&nbsp<a class="waves-effect waves-light btn" onclick="location.reload()"><i class="material-icons left">replay</i>Muat Ulang</a><br /><br />
+            <div class="card-content">
+                <div id="map" class="z-depth-5"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m12">
+              <button class="btn btn-primary" id="tambah">Tambah Marker</button>
+                        <button class="btn btn-primary" id="animasi">Event Bounce</button>
+                   <button class="btn btn-primary" id="berhenti">Stop</button>
+            </div>
+        </div>
+      </div>
+    </div>

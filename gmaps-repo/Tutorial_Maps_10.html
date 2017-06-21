@@ -1,0 +1,45 @@
+<html>
+  <head>
+  <title>Java Sc Developer - MAPS</title>
+    <style type="text/css">
+      html, body {width: 600px;height: 400px;margin: 0 auto ;padding: 0;}
+      h1 {text-align: center;text-transform: uppercase;}
+      p {text-align: center;font-size: 14px;text-transform: uppercase;}
+      #map {height: 100%;}
+    </style>
+  </head>
+    <script type="text/javascript">
+    var map ;
+    var posisi = {lat:0.512574, lng:  101.448355};
+    var gambar = "http://icons.iconarchive.com/icons/icons8/windows-8/64/Maps-Geo-Fence-icon.png";
+    var isiInfo = "I make hello world in my code and now i see my world in my life </br></br>"+
+    				"Jangan lupa kunjungi <a href='http://www.java-sc.blogspot.com'>Java Source Code</a> Create by Bang Hes";
+	function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: posisi
+        });
+        var marker = new google.maps.Marker({
+          position:posisi,
+          map: map,
+          draggable: true,
+          title: 'Java Source Code',
+          icon: gambar,
+	    });
+	    var infoWindow = new google.maps.InfoWindow({
+	    	content: isiInfo,
+	    });
+	    marker.addListener('click',function() {
+	    	infoWindow.open(map,marker);
+	    });
+	}	
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKN8E3VeLkA5mgeENXiKp9tjhPlQ95TPc&callback=initMap">
+    </script>
+  <body>
+  <h1>Membuat info window sederhana</h1>
+  <p>Java Source Code</p>
+    <div id="map"></div>
+</p>
+  </body>
+</html> 

@@ -1,0 +1,62 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+  <title>Java Sc Developer - MAPS</title>
+    <style type="text/css">
+      html, body { width: 600px;height: 400px; margin: 0 auto ; padding: 0; }
+      h1 {text-align: center;text-transform: uppercase;}
+      p {text-align: center;font-size: 14px;text-transform: uppercase;}
+      button {background-color: #1d98e0;text-align: center;color: #fff;padding: 8px;border-radius: 10px; }
+      #map { height: 100%; }
+    </style>
+  </head>
+    <script type="text/javascript">
+    var map , penanda = [];
+    var posisi = {lat:0.512574, lng:  101.448355};
+function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: posisi
+        });
+        map.addListener('click', function(event) {
+          tambah(event.latLng);
+        });
+      }
+    function tambah(location){
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          draggable: true,
+          title: 'Java Source Code'
+        });
+        penanda.push(marker);
+      }
+    function setMapOnAll(map) {
+      for (var i = 0; i < penanda.length; i++) {
+        penanda[i].setMap(map);
+      }
+    }
+    function sembunyikan() {
+      setMapOnAll(null);
+    }
+    function tampilkan() {
+      setMapOnAll(map);
+    }
+    function hapus() {
+ sembunyikan();
+ penanda = [];
+}
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKN8E3VeLkA5mgeENXiKp9tjhPlQ95TPc&callback=initMap">
+    </script>
+  <body>
+  <h1>Menghapus Marker Dari Maps Pada Google Maps</h1>
+  <p>Java Source Code</p>
+    <div id="map"></div>
+  <p>
+    <button onclick="sembunyikan()"> Sembunyikan Marker </button>
+    <button onclick="tampilkan()"> Tampilkan Marker </button>
+    <button onclick="hapus()"> Hapus Marker </button>
+  </p>
+  </body>
+</html> 

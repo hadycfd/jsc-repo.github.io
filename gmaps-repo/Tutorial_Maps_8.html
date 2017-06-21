@@ -1,0 +1,45 @@
+<html>
+  <head>
+  <title>Java Sc Developer - MAPS</title>
+    <style type="text/css">
+      html, body {width: 600px;height: 400px;margin: 0 auto ;padding: 0;}
+      h1 {text-align: center;text-transform: uppercase;}
+      p {text-align: center;font-size: 14px;text-transform: uppercase;}
+      #map {height: 100%;}
+    </style>
+  </head>
+    <script type="text/javascript">
+    var map ;
+    var penanda = [] ;
+    var index = 0;
+    var label = 'JAVA-SC.BLOGSPOT.COM';
+    var posisi = {lat:0.512574, lng:  101.448355};
+	function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: posisi
+        });
+        map.addListener('click', function(event) {
+          tambah(event.latLng , map);
+        });
+      }
+    function tambah(location , map){
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          label: label[index++ % label.length],
+          draggable: true,
+          title: 'Java Source Code'
+        });
+        penanda.push(marker);
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKN8E3VeLkA5mgeENXiKp9tjhPlQ95TPc&callback=initMap">
+    </script>
+  <body>
+  <h1>Merubah Label Marker Maps pada Google Maps</h1>
+  <p>Java Source Code</p>
+    <div id="map"></div>
+</p>
+  </body>
+</html> 
