@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Java Source Code Repository</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="../assets/js/jquery-2.1.1.min.js"></script>
+  
+<style type="text/css">#map {height: 500px;}</style>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKN8E3VeLkA5mgeENXiKp9tjhPlQ95TPc">
+    </script>
+    <script type="text/javascript" src="../assets/js/infobox.js"></script>
+<script type="text/javascript">
+  var url  = window.location.toString();
+  function initialize() {
+    
+    var posisi = new google.maps.LatLng(0.512574, 101.448355);
+
+    var myMapOptions = {
+       zoom: 13
+      ,center: posisi
+      ,mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var theMap = new google.maps.Map(document.getElementById("map"), myMapOptions);
+
+
+    var marker = new google.maps.Marker({
+      map: theMap,
+      draggable: true,
+      position: posisi,
+      visible: true
+    });
+
+
+    var boxText = document.createElement("div");
+    boxText.style.cssText = "padding: 5px;color:#fff";
+    boxText.innerHTML = "<div ><div style='text-align:center;padding:10px;font-size:24px'>Rumah Java Service and Consult</div></div><div ><div><div style='width:130px;float:left;margin-top: 10px;'><center><img src='../assets/images/1.jpg' width='100px' height='100px'></center></div><div style='width:250px;float:right'><p style='margin-left:0px;'>Ini adalah isi kontennya yang jelas seterah saja mau isi konten seperti apa<br>Jalan mana saja : <h3><a href='www.java-sc.web.id' class='orange-text'>Java-Sc</a></h3> </p></div></div></div></div>";
+
+    var myOptions = {
+       content: boxText
+      ,disableAutoPan: false
+      ,maxWidth: 0
+      ,pixelOffset: new google.maps.Size(-60, -260)
+      ,zIndex: null
+      ,boxStyle: { 
+        background: "url('../assets/images/infobox.png') no-repeat"
+        ,width: "400px"
+        ,height:"220px"
+       }
+      ,closeBoxMargin: "-5px -3px 0px 0px"
+      ,closeBoxURL: "https://cdn2.iconfinder.com/data/icons/officeicons/PNG/24/Close.png"
+      ,infoBoxClearance: new google.maps.Size(1, 1)
+      ,isHidden: false
+      ,pane: "floatPane"
+      ,enableEventPropagation: false
+    };
+    google.maps.event.addListener(marker, "click", function (e) {
+      ib.open(theMap, this);
+    });
+
+    var ib = new InfoBox(myOptions);
+
+    ib.open(theMap, marker);
+  }
+  function redirectToIndex(e){
+      var value = e.getAttribute("data-id");
+      window.location = url.replace('gmaps-repo/cara-membuat-infowindow-dengan-infobox-di-google-maps.html', value);
+  }
+  function redirectToGmaps(e){
+      var value = e.getAttribute("data-id");
+      window.location = url.replace('gmaps-repo/cara-membuat-infowindow-dengan-infobox-di-google-maps.html', value);
+  }
+  function pageRedirect() {
+    window.location = url.replace('gmaps-repo/cara-membuat-infowindow-dengan-infobox-di-google-maps.html', '#gmaps-repo');
+  }  
+</script>
+</head>
+
+<body onload="initialize()">
+  <nav class="blue darken-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#index" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a data-id="#index" onclick="redirectToIndex(this)"><i class="material-icons left">dashboard</i>Beranda</a></li>
+        <li><a data-id="#gmaps-repo" onclick="redirectToGmaps(this)"><i class="material-icons left">local_library</i>Contoh Google Maps</a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a data-id="#index" onclick="redirectToIndex(this)"><i class="material-icons left">dashboard</i>Home</a></li>
+        <li><a data-id="#gmaps-repo" onclick="redirectToGmaps(this)"><i class="material-icons left">local_library</i>Google Maps Example</a></li>       
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+    <div class="container">
+      <div class="section">
+        <div class="row">
+          <div class="col s12 m12">
+            <h5 class="card-panel red-text text-darken-2"><center>Cara Membuat InfoWindow Dengan InfoBox di Google Maps</center></h5>
+            <a  class="waves-effect waves-light btn mouse" onclick="pageRedirect()"><i class="material-icons left">keyboard_arrow_left</i>Kembali</a>&nbsp<a class="waves-effect waves-light btn" onclick="location.reload()"><i class="material-icons left">replay</i>Muat Ulang</a><br /><br />
+            <div class="card-content">
+                <div id="map" class="z-depth-5"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <footer class="page-footer blue darken-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text"><i class="small material-icons left">help_outline</i>Tentang</h5>
+          <p class="grey-text text-lighten-4">Bahasa Indonesia </br>Laman ini adalah kumpulan dari contoh kode program yang dibuat pada website <a class="white-text" href="http://www.java-sc.com"><b>Java Source Code</b></a> yang bersifat open source (Terkecuali Donasi Yang Bersifat Iklan)</p>
+        </div>
+        <div class="col l6 s12">
+          <h5 class="white-text"><i class="small material-icons left">bookmark</i>Ikuti Dalam Jaringan</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Facebook Page</a></li>
+            <li><a class="white-text" href="#!">Blogger</a></li>
+            <li><a class="white-text" href="#!">Youtube Channel</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright blue darken-3">
+      <div class="container">
+      Made by <a class="white-text text-lighten-3" href="http://materializecss.com">Materialize</a> - Redesign By <a class="white-text text-lighten-3" href="http://www.java-sc.com">Hady Eka Saputra</a>
+      </div>
+    </div>
+  </footer>
+  <!--  Scripts-->
+  <script src="../assets/js/materialize.js"></script>
+  <script type="text/javascript">
+    (function($){
+      $(function(){
+        $('.button-collapse').sideNav();
+        $(".dropdown-button").dropdown();
+      }); 
+    })(jQuery); 
+  </script>
+  </body>
+</html>

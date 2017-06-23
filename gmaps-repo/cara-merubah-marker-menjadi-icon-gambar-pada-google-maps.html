@@ -1,0 +1,44 @@
+    <style type="text/css">
+      #map {height: 500px;}
+    </style>
+    <script type="text/javascript">
+    var map ;
+    var penanda ;
+    var posisi = {lat:0.512574, lng:  101.448355};
+    var gambar = "http://icons.iconarchive.com/icons/paomedia/small-n-flat/48/map-marker-icon.png";
+    
+	function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: posisi
+        });
+        map.addListener('click', function(event) {
+          tambah(event.latLng);
+        });
+      }
+    function tambah(location){
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          draggable: true,
+          title: 'Java Source Code',
+          icon: gambar,
+        });
+        penanda.push(marker);
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKN8E3VeLkA5mgeENXiKp9tjhPlQ95TPc&callback=initMap">
+    </script>
+    <div class="container">
+        <div class="section">
+          <div class="row">
+            <div class="col s12 m12">
+              <h5 class="card-panel red-text text-darken-2"><center>Cara Merubah Marker Menjadi Icon Gambar Pada Google Maps</center></h5>
+              <a  class="waves-effect waves-light btn" onclick="pageRedirect()"><i class="material-icons left">keyboard_arrow_left</i>Kembali</a>&nbsp<a class="waves-effect waves-light btn" onclick="location.reload()"><i class="material-icons left">replay</i>Muat Ulang</a><br /><br />
+              <div class="card-content">
+                  <div id="map" class="z-depth-5"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
